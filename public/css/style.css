@@ -1,0 +1,498 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: rgb(131, 96, 0);
+}
+
+:root {
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+}
+
+.header {
+  height: 80px;
+  width: 100%;
+  border-bottom: 5px solid black;
+}
+
+.header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.header a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.agora {
+  text-decoration: underline;
+}
+
+.navbar {
+ padding-right: 20px;
+ width: 500px;
+}
+
+.navbar ul {
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  font-size: 20px;
+}
+
+.titulo img {
+  height: 100%;
+  width: 30%;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: white;
+  background-image: url('../assets/imgs/lordofcinder.jpg');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner .container {
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 65%;
+  background-color: #000000;
+  opacity: 90%;
+}
+
+.banner .container p {
+  width: 90%;
+  margin: 0;
+  padding: 0;
+  font-size: 65px;
+  text-align: center;
+  
+}
+
+.banner .container span {
+  font-weight: 800;
+}
+
+/* MISSÃO VISÃO VALORES */
+
+.social {
+  background-color: #000000;
+  background: linear-gradient(135deg, #1c170055 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(225deg, #1c1700 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(315deg, #1c170055 25%, transparent 25%) 0px 0/ 10px 10px, linear-gradient(45deg, #1c1700 25%, #000000 25%) 0px 0/ 10px 10px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  color: white;
+}
+
+.social .container {
+  justify-content: center;
+  width: 100%;
+}
+
+.box img {
+  width: 350px;
+}
+
+.social .container .boxes {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 5px solid rgb(253, 219, 126);
+}
+
+
+.social .container .boxes .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 97%;
+  background-color: #0000006c;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.social p {
+  text-align: center;
+  font-size: 18px;
+}
+
+
+.lore {
+  height: 80vh;
+  border-top: 5px solid rgb(253, 219, 126);
+  background-color: #000000;
+  background: linear-gradient(135deg, #1c170055 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(225deg, #1c1700 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(315deg, #1c170055 25%, transparent 25%) 0px 0/ 10px 10px, linear-gradient(45deg, #1c1700 25%, #000000 25%) 0px 0/ 10px 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.lore .container {
+  width: 100%;
+}
+
+.lore .container .boxes {
+  display: flex;
+  flex-direction: row;
+}
+
+.lore .container .boxes .box {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 2%;
+}
+
+.lore .container .boxes .box .boxsec{
+  height: 44%;
+  width: 94%;
+  margin: 3% 3% 3% 3%;
+  background-color: #000000ac;
+  padding: 10px 10px 10px 10px;
+}
+
+.boxsec h1 {
+  font-size: 45px;
+}
+
+.boxsec span {
+  font-size: 28px;
+}
+
+.boxsec .container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.boxsec img {
+  background-size: cover;
+  width: 50%;
+  border: 2px solid rgb(253, 219, 126);
+}
+
+.boxsec .container a{
+  font-size: 20px;
+  text-decoration: none;
+  text-decoration: underline;
+  color: rgb(253, 219, 126);
+}
+
+.mais {
+  background-color: #000000;
+  background: linear-gradient(135deg, #1c170055 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(225deg, #1c1700 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(315deg, #1c170055 25%, transparent 25%) 0px 0/ 10px 10px, linear-gradient(45deg, #1c1700 25%, #000000 25%) 0px 0/ 10px 10px;
+  height: 900px;
+  border-top: 5px solid rgb(253, 219, 126);
+}
+
+.mais .container {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.final {
+  width: 75%;
+  height: 60%;
+  background-color: #000000ac;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.final h1 {
+  font-size: 70px;
+}
+
+.final p {
+  font-size: 35px;
+}
+
+.final a {
+  text-decoration: none;
+  text-decoration: underline;
+  color: rgb(253, 219, 126);
+}
+
+.footer {
+  background-color: rgb(131, 96, 0);
+  height: 70px;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+  border-top: 5px solid #000000;
+}
+
+.footer .container {
+  width: 100%;
+
+}
+
+.footer .container .recado {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+
+  width: 76%;
+  font-size: 17px;
+}
+
+/* LOGIN */
+
+.login {
+  height: var(--tamanho-login);
+  background-image: url('../assets/imgs/loginbackground.png');
+  background-size: cover;
+}
+
+.login .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  width: 50%;
+  background-color: #000000dc;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: rgb(253, 219, 126);
+  flex-direction: column;
+  height: fit-content;
+  padding: 20px 0;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.formulario {
+  display: flex;
+  height: 90%;
+  width: 80%;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.formulario span {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.formulario input {
+  border: 2px solid #dd7600;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.formulario select {
+  border: 2px solid #dd7600;
+  background-color: white;
+  color: gray;
+  height: 36px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px 0;
+}
+
+.botao {
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  background-color: rgb(253, 219, 126);
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #e6005a 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #e6005a;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
+}
+
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* SIMULADOR */
+
+.simulador {
+  color: white;
+}
+
+.simulador .container {
+  flex-direction: column;
+  overflow: scroll; 
+  height: var(--tamanho-simulador);
+}
+
+/* ALERTA */
+
+#alerta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.mensagem-alarme .informacao {
+  width: 66%;
+}
+
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bell {
+  0%   {transform: rotate(25deg)}
+  25%  {transform: rotate(-25deg)}
+  50%  {transform: rotate(25deg)}
+  75%  {transform: rotate(-25deg)}
+  100% {transform: rotate(25deg)}
+}
