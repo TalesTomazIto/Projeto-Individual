@@ -2,12 +2,36 @@ html {
   scroll-behavior: smooth;
 }
 
-
 body {
   margin: 0;
   padding: 0;
   font-family: "Josefin Sans", sans-serif;
-  background-color: rgb(131, 96, 0);
+  background-color: #836000;
+  --sb-track-color: #2b2b2b;
+  --sb-thumb-color: #fddb7e;
+  --sb-size: 6px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 14px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 14px;
+  border: 1px solid #836000;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
 }
 
 :root {
@@ -209,10 +233,50 @@ body {
   color: rgb(253, 219, 126);
 }
 
-.mais {
+.sobremim {
   background-color: #000000;
   background: linear-gradient(135deg, #1c170055 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(225deg, #1c1700 25%, transparent 25%) -5px 0/ 10px 10px, linear-gradient(315deg, #1c170055 25%, transparent 25%) 0px 0/ 10px 10px, linear-gradient(45deg, #1c1700 25%, #000000 25%) 0px 0/ 10px 10px;
   height: 900px;
+  border-top: 5px solid #fddb7e;
+  color: white;
+}
+
+.sobremim .container {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.minharelacao {
+  background-color: #0000006c;
+  height: 80%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.sobremimh1 {
+  height: 15%;
+  width: 98%;
+  padding-left: 2%;
+  font-size: 43px;
+}
+
+.sobremimp {
+  height: 85%;
+  width: 92%;
+  padding-left: 4%;
+  padding-right: 4%;
+  font-size: 28px;
+}
+
+.mais {
+  height: 900px;
+  background-image: url("../assets/imgs/maiswpp.jpg");
+  background-size: cover;
   border-top: 5px solid rgb(253, 219, 126);
 }
 
@@ -252,7 +316,7 @@ body {
   background-color: rgb(131, 96, 0);
   height: 70px;
   width: 100%;
-  color: #fff;
+  color: #000000;
   display: flex;
   font-size: 15px;
   border-top: 5px solid #000000;
