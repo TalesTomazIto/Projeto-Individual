@@ -668,7 +668,7 @@ canvas {
 .cruzadinha {
   height: 95%;
   margin-top: 1%;
-  width: 73%;
+  width: 60%;
   background-color: #000000a8;
   color: white;
 }
@@ -807,7 +807,7 @@ footer p{
 
 
 #div_verifiedAnswer{
-  width: 500px;
+  width: 250px;
   height: 70px;
   margin: auto;
   text-align: center;
@@ -815,6 +815,7 @@ footer p{
   vertical-align:center;
   margin-bottom: 20px;
 }
+
 .correctAnswer{
   background-color: #58D68D;
   color: #196F3D;

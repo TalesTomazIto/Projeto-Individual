@@ -99,9 +99,6 @@
                 </div>
                 <div class="base">
                     <div class="container">
-                        <div style="display: none" id="div_verifiedAnswer">
-                            <h3>Resposta Correta</h3>
-                        </div>
                         <div id="div_game">
                             <br>
                             <div id="div_information" style="padding-left: 20px; padding-right: 20px;">
@@ -112,9 +109,10 @@
                                     Perguntas serão exibidas na parte inferior do quadro. <br><br>
                                     Insira a sua resposta na caixa de texto e clique em "Verificar" para conferir a sua
                                     resposta.<br><br>
-                                    Para respostas que possuem espaço deve-se substituir o espaço por hífem (-) <br> <br>
+                                    Para respostas que possuem 2 palavras podem ser escritas com espaço normalmente.
+                                    <br> <br>
                                     As respostas devem ser escritas em inglês e em maiúsculo. <br> <br>
-                                    A partida acaba quando as 16 questões forem respondidas. <br><br>
+                                    A partida acaba quando as 13 questões forem respondidas. <br><br>
                                     Boa sorte! <br> <br>
                                 </p>
                             </div>
@@ -125,7 +123,8 @@
                                 <center>
                                     <br>
                                     <span id="span_questionText"></span>
-                                    <input oninput="resposta()" type="text" id="input_answer" placeholder="Resposta"><br>
+                                    <input oninput="resposta()" type="text" id="input_answer"
+                                        placeholder="Resposta"><br>
                                     <br>
                                     <button id="button_verify" onclick="verify()" class="button" disabled
                                         style="opacity: 50%;">Verificar</button>
@@ -135,6 +134,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div style="display: none" id="div_verifiedAnswer">
+                <h3>Resposta Correta</h3>
             </div>
         </div>
     </div>
@@ -149,42 +151,57 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    var special_words = ['ATTUNEMENT', 'MERCENARY', 'Registradores', 'RAM', 'ROM', 'EPROM', 'FLASH', 'Memória de Massa', 'DMA', 'CS', 'Adress Bus', 'Data Bus', 'I5', 'I7', 'Dual Core', 'Quad Core'];
-
-    var questions_list = [
-        'Qual é o status que aumenta a quantidade de espaços de magia?',
-        'Qual é a classe com a maior destreza base do jogo?',
-        'Tipo de memória que se encontra no topo da hierarquia de memória',
-        'Tipo de memória volátil que tem como nome Random Acess Memory. Qual é a sigla deste componente?',
-        'Tipo de memória não volátil que oferece dados apenas para leitura',
-        'Tipo de memória não volátil que precisa ter seu chip exposto a luz ultravioleta para apagar seu conteúdo',
-        'Tipo particular de EEPROM que mantém as informações armazenadas sem a necessidade de uma fonte de energia elétrica',
-        'Tipo de memória que precisa ter seu conteúdo copiado na RAM para poder ser executado pela CPU',
-        'Permite que periféricos acessem diretamente a RAM sem ocupar processamento',
-        'Também conhecido como Slave Select (SS). Usado para selecionar um ou um conjunto de circuitos que estão conectados no computador',
-        'Grupo de linhas ou trilhas usadas para se referir a um endereço físico na memória. O número de trilhas determina a quantidade de endereços na memória física',
-        'Também chamado de Memory Bus. É responsável para carregar os dados.',
-        'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em setembro de 2009',
-        'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em novembro de 2008',
-        'Tipo de processador que possui dois processadores ou melhor dizendo ‘dois centros, núcleos ou cores de execução‘ no mesmo circuito integrado.  Cada core tem sua própria memória cash e controlador o que permite que funcione mais efetivamente do que um processador single',
-        'Segue o mesmo princípio de um dual-core, mas agora em teoria tem o dobro da capacidade de processamento'
+    var special_words = ['ATTUNEMENT', 'MERCENARY', 'BLOODLUST', 'UCHIGATANA', 'CALAMITY RING', 'HAVEL', 'YHORM', 'LORIAN', 'EMBER', 'ANOR LONDO', 'COILED SWORD', 'DRAGONSLAYER', 'OOLACILE',
+        // 'I7', 'Dual Core', 'Quad Core'
     ];
 
-    var filledCell = [2, 20, 38, 56, 133, 134, 135, 59, 77, 95, 113, 131, 149,
-        167, 185, 203, 221, 239, 257, 275, 59, 60, 61, 272, 290, 308, 236,
-        254, 272, 290, 308, 116, 134, 152, 170, 188, 27, 45, 63, 81, 99, 117,
-        135, 153, 171, 189, 207, 225, 243, 261, 279, 297, 203, 204, 205, 312,
-        313, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 187, 20, 223,
-        241, 259, 277, 295, 313, 117, 118, 113, 114, 37, 38, 39, 40, 41, 42,
-        43, 44, 45, 3, 21, 39, 57, 75, 93, 111, 129, 147];
+    var questions_list = [
+        'Status que aumenta a quantidade de espaços de magia.(DS3)',
+        'Classe com a maior destreza base do jogo.(DS3)',
+        'Katana que possui habilidade de trocar vida por um aumento de dano temporário.(DS3)',
+        'Primeira katana que é possível desbloquear.(DS3)',
+        'Anel que diminui 100% da absorção do usuário, fazendo-o receber o dobro de dano.(DS3)',
+        'NPC hostil que utiliza um dente de dragão como arma.',
+        'Nome do lord das cinzas conhecido como o gigante.',
+        'Nome do príncipe mais velho do reino de Lothric.',
+        'Item que aumenta vida do usuário até a próxima morte e permite o modo multiplayer.(DS3)',
+        'Cidade lendária conhecida como cidade dos deuses.',
+        'Item recebido ao matar o primeiro boss, Iudex Gundyr.',
+        'Como era conhecido Ornstein, assim como o nome da sua armadura.',
+        'Nome da cidade conhecida como lar das feitiçarias antigas, e que foi consumida pelo abismo.',
+        // 'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em novembro de 2008',
+        // 'Tipo de processador que possui dois processadores ou melhor dizendo ‘dois centros, núcleos ou cores de execução‘ no mesmo circuito integrado.  Cada core tem sua própria memória cash e controlador o que permite que funcione mais efetivamente do que um processador single',
+        // 'Segue o mesmo princípio de um dual-core, mas agora em teoria tem o dobro da capacidade de processamento'
+    ];
 
-    var firstIndex = [2, 133, 59, 59, 272, 236, 116, 27, 203, 312, 270, 187, 117, 113, 37, 3];
+    var filledCell = [60, 78, 96, 114, 132, 150, 168, 186, 204, 222,
+        168, 169, 170, 171, 172, 173, 174, 175, 176,
+        108, 109, 110, 111, 112, 113, 114, 115, 116,
+        55, 56, 57, 58, 59, 60, 61, 62, 63, 64,
+        8, 26, 44, 62, 80, 98, 116, 134, 152, 170, 188, 206, 224,
+        156, 174, 192, 210, 228,
+        176, 194, 212, 230, 248,
+        228, 229, 230, 231, 232, 233,
+        172, 190, 208, 226, 244,
+        26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+        92, 110, 128, 146, 164, 182, 200, 218, 236, 254, 272, 290,
+        290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301,
+        35, 53, 71, 89, 107, 125, 143, 161
+
+        // 113, 114, 
+        // 37, 38, 39, 40, 41, 42,43, 44, 45, 
+        // 3, 21, 39, 57, 75, 93, 111, 129, 147
+    ];
+
+    var firstIndex = [60, 168, 108, 55, 8, 156, 176, 228, 172, 26, 92, 290, 35
+        // 113, 37, 3
+    ];
 
     var word = {
 
         word1: {
             letter: special_words[0].split(''),
-            position: [2, 20, 38, 56],
+            position: [60, 78, 96, 114, 132, 150, 168, 186, 204, 222],
             write: function () {
 
                 for (i in word.word1.letter) {
@@ -193,12 +210,13 @@
                     findCell.innerHTML = word.word1.letter[i];
                     console.log(word.word1.letter[i]);
                 }
-                cell_2.innerHTML = '<span style="color: red; font-size:10px">1</span>R';
+                cell_60.innerHTML = '<span style="color: red; font-size:10px">1</span>A';
+                cell_168.innerHTML = '<span style="color: red; font-size:10px">2</span>M';
             }
         },
         word2: {
             letter: special_words[1].split(''),
-            position: [133, 134, 135],
+            position: [168, 169, 170, 171, 172, 173, 174, 175, 176],
             write: function () {
                 for (i in word.word2.letter) {
                     var findCell = document.querySelector(`#cell_${word.word2.position[i]}`);
@@ -206,13 +224,16 @@
                     findCell.innerHTML = word.word2.letter[i];
                     console.log(word.word2.letter[i]);
                 }
-                cell_133.innerHTML = '<span style="color: red; font-size:10px">2</span>U';
+                cell_168.innerHTML = '<span style="color: red; font-size:10px">2</span>M';
+                cell_172.innerHTML = '<span style="color: red; font-size:10px">9</span>E';
+                cell_176.innerHTML = '<span style="color: red; font-size:10px">7</span>Y';
+
 
             }
         },
         word3: {
             letter: special_words[2].split(''),
-            position: [59, 77, 95, 113, 131, 149, 167, 185, 203, 221, 239, 257, 275],
+            position: [108, 109, 110, 111, 112, 113, 114, 115, 116],
             write: function () {
                 for (i in word.word3.letter) {
                     var findCell = document.querySelector(`#cell_${word.word3.position[i]}`);
@@ -220,13 +241,13 @@
                     findCell.innerHTML = word.word3.letter[i];
                     console.log(word.word3.letter[i]);
                 }
-                cell_59.innerHTML = '<span style="color: red; font-size:10px">3_4</span>R';
-                cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>i';
+                cell_108.innerHTML = '<span style="color: red; font-size:10px">3</span>B';
+                // cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>i';
             }
         },
         word4: {
             letter: special_words[3].split(''),
-            position: [59, 60, 61],
+            position: [55, 56, 57, 58, 59, 60, 61, 62, 63, 64],
             write: function () {
                 for (i in word.word4.letter) {
                     var findCell = document.querySelector(`#cell_${word.word4.position[i]}`);
@@ -234,12 +255,13 @@
                     findCell.innerHTML = word.word4.letter[i];
                     console.log(word.word4.letter[i]);
                 }
-                cell_59.innerHTML = '<span style="color: red; font-size:10px">3_4</span>R';
+                cell_55.innerHTML = '<span style="color: red; font-size:10px">4</span>U';
+                cell_60.innerHTML = '<span style="color: red; font-size:10px">1</span>A';
             }
         },
         word5: {
             letter: special_words[4].split(''),
-            position: [272, 290, 308],
+            position: [8, 26, 44, 62, 80, 98, 116, 134, 152, 170, 188, 206, 224],
             write: function () {
                 for (i in word.word5.letter) {
                     var findCell = document.querySelector(`#cell_${word.word5.position[i]}`);
@@ -247,12 +269,15 @@
                     findCell.innerHTML = word.word5.letter[i];
                     console.log(word.word5.letter[i]);
                 }
-                cell_272.innerHTML = '<span style="color: red; font-size:10px">5</span>R';
+                cell_8.innerHTML = '<span style="color: red; font-size:10px">5</span>C';
+                cell_26.innerHTML = '<span style="color: red; font-size:10px">10</span>A';
+                cell_152.innerHTML = '-';
+
             }
         },
         word6: {
             letter: special_words[5].split(''),
-            position: [236, 254, 272, 290, 308],
+            position: [156, 174, 192, 210, 228],
             write: function () {
                 for (i in word.word6.letter) {
                     var findCell = document.querySelector(`#cell_${word.word6.position[i]}`);
@@ -260,12 +285,14 @@
                     findCell.innerHTML = word.word6.letter[i];
                     console.log(word.word6.letter[i]);
                 }
-                cell_236.innerHTML = '<span style="color: red; font-size:10px">6</span>E';
+                cell_156.innerHTML = '<span style="color: red; font-size:10px">6</span>H';
+                cell_228.innerHTML = '<span style="color: red; font-size:10px">8</span>L';
+
             }
         },
         word7: {
             letter: special_words[6].split(''),
-            position: [116, 134, 152, 170, 188],
+            position: [176, 194, 212, 230, 248],
             write: function () {
                 for (i in word.word7.letter) {
                     var findCell = document.querySelector(`#cell_${word.word7.position[i]}`);
@@ -273,12 +300,12 @@
                     findCell.innerHTML = word.word7.letter[i];
                     console.log(word.word7.letter[i]);
                 }
-                cell_116.innerHTML = '<span style="color: red; font-size:10px">7</span>F';
+                cell_176.innerHTML = '<span style="color: red; font-size:10px">7</span>Y';
             }
         },
         word8: {
             letter: special_words[7].split(''),
-            position: [27, 45, 63, 81, 99, 117, 135, 153, 171, 189, 207, 225, 243, 261, 279, 297],
+            position: [228, 229, 230, 231, 232, 233],
             write: function () {
                 for (i in word.word8.letter) {
                     var findCell = document.querySelector(`#cell_${word.word8.position[i]}`);
@@ -286,16 +313,16 @@
                     findCell.innerHTML = word.word8.letter[i];
                     console.log(word.word8.letter[i]);
                 }
-                cell_27.innerHTML = '<span style="color: red; font-size:10px">8</span>M';
-                cell_117.innerHTML = '<span style="color: red; font-size:10px">13</span>i';
-                cell_153.innerHTML = '-';
-                cell_207.innerHTML = '-';
+                cell_228.innerHTML = '<span style="color: red; font-size:10px">8</span>L';
+                // cell_117.innerHTML = '<span style="color: red; font-size:10px">13</span>i';
+                // cell_153.innerHTML = '-';
+                // cell_207.innerHTML = '-';
 
             }
         },
         word9: {
             letter: special_words[8].split(''),
-            position: [203, 204, 205, 312, 313],
+            position: [172, 190, 208, 226, 244],
             write: function () {
                 for (i in word.word9.letter) {
                     var findCell = document.querySelector(`#cell_${word.word9.position[i]}`);
@@ -303,12 +330,12 @@
                     findCell.innerHTML = word.word9.letter[i];
                     console.log(word.word9.letter[i]);
                 }
-                cell_203.innerHTML = '<span style="color: red; font-size:10px">9</span>D';
+                cell_172.innerHTML = '<span style="color: red; font-size:10px">9</span>E';
             }
         },
         word10: {
             letter: special_words[9].split(''),
-            position: [312, 313],
+            position: [26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
             write: function () {
                 for (i in word.word10.letter) {
                     var findCell = document.querySelector(`#cell_${word.word10.position[i]}`);
@@ -316,12 +343,15 @@
                     findCell.innerHTML = word.word10.letter[i];
                     console.log(word.word10.letter[i]);
                 }
-                cell_312.innerHTML = '<span style="color: red; font-size:10px">10</span>C';
+                cell_26.innerHTML = '<span style="color: red; font-size:10px">10</span>A';
+                cell_35.innerHTML = '<span style="color: red; font-size:10px">13</span>O';
+                cell_30.innerHTML = '-';
+
             }
         },
         word11: {
             letter: special_words[10].split(''),
-            position: [270, 271, 272, 273, 274, 275, 276, 277, 278, 279],
+            position: [92, 110, 128, 146, 164, 182, 200, 218, 236, 254, 272, 290],
             write: function () {
                 for (i in word.word11.letter) {
                     var findCell = document.querySelector(`#cell_${word.word11.position[i]}`);
@@ -329,13 +359,15 @@
                     findCell.innerHTML = word.word11.letter[i];
                     console.log(word.word11.letter[i]);
                 }
-                cell_270.innerHTML = '<span style="color: red; font-size:10px">11</span>A';
-                cell_276.innerHTML = '-';
+                cell_92.innerHTML = '<span style="color: red; font-size:10px">11</span>C';
+                cell_290.innerHTML = '<span style="color: red; font-size:10px">12</span>D';
+                cell_182.innerHTML = '-';
+
             }
         },
         word12: {
             letter: special_words[11].split(''),
-            position: [187, 205, 223, 241, 259, 277, 295, 313, 117, 118],
+            position: [290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301],
             write: function () {
                 for (i in word.word12.letter) {
                     var findCell = document.querySelector(`#cell_${word.word12.position[i]}`);
@@ -343,13 +375,13 @@
                     findCell.innerHTML = word.word12.letter[i];
                     console.log(word.word12.letter[i]);
                 }
-                cell_187.innerHTML = '<span style="color: red; font-size:10px">12</span>D';
-                cell_259.innerHTML = '-';
+                cell_290.innerHTML = '<span style="color: red; font-size:10px">12</span>D';
+                // cell_259.innerHTML = '-';
             }
         },
         word13: {
             letter: special_words[12].split(''),
-            position: [117, 118],
+            position: [35, 53, 71, 89, 107, 125, 143, 161],
             write: function () {
                 for (i in word.word13.letter) {
                     var findCell = document.querySelector(`#cell_${word.word13.position[i]}`);
@@ -357,50 +389,50 @@
                     findCell.innerHTML = word.word13.letter[i];
                     console.log(word.word13.letter[i]);
                 }
-                cell_117.innerHTML = '<span style="color: red; font-size:10px">13</span>I';
+                cell_35.innerHTML = '<span style="color: red; font-size:10px">13</span>O';
             }
         },
-        word14: {
-            letter: special_words[13].split(''),
-            position: [113, 114],
-            write: function () {
-                for (i in word.word14.letter) {
-                    var findCell = document.querySelector(`#cell_${word.word14.position[i]}`);
+        // word14: {
+        //     letter: special_words[13].split(''),
+        //     position: [113, 114],
+        //     write: function () {
+        //         for (i in word.word14.letter) {
+        //             var findCell = document.querySelector(`#cell_${word.word14.position[i]}`);
 
-                    findCell.innerHTML = word.word14.letter[i];
-                    console.log(word.word14.letter[i]);
-                }
-                cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>I';
-            }
-        },
-        word15: {
-            letter: special_words[14].split(''),
-            position: [37, 38, 39, 40, 41, 42, 43, 44, 45],
-            write: function () {
-                for (i in word.word15.letter) {
-                    var findCell = document.querySelector(`#cell_${word.word15.position[i]}`);
+        //             findCell.innerHTML = word.word14.letter[i];
+        //             console.log(word.word14.letter[i]);
+        //         }
+        //         cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>I';
+        //     }
+        // },
+        // word15: {
+        //     letter: special_words[14].split(''),
+        //     position: [37, 38, 39, 40, 41, 42, 43, 44, 45],
+        //     write: function () {
+        //         for (i in word.word15.letter) {
+        //             var findCell = document.querySelector(`#cell_${word.word15.position[i]}`);
 
-                    findCell.innerHTML = word.word15.letter[i];
-                    console.log(word.word15.letter[i]);
-                }
-                cell_37.innerHTML = '<span style="color: red; font-size:10px">15</span>D';
-                cell_41.innerHTML = '-';
-            }
-        },
-        word16: {
-            letter: special_words[15].split(''),
-            position: [3, 21, 39, 57, 75, 93, 111, 129, 147],
-            write: function () {
-                for (i in word.word16.letter) {
-                    var findCell = document.querySelector(`#cell_${word.word16.position[i]}`);
+        //             findCell.innerHTML = word.word15.letter[i];
+        //             console.log(word.word15.letter[i]);
+        //         }
+        //         cell_37.innerHTML = '<span style="color: red; font-size:10px">15</span>D';
+        //         cell_41.innerHTML = '-';
+        //     }
+        // },
+        // word16: {
+        //     letter: special_words[15].split(''),
+        //     position: [3, 21, 39, 57, 75, 93, 111, 129, 147],
+        //     write: function () {
+        //         for (i in word.word16.letter) {
+        //             var findCell = document.querySelector(`#cell_${word.word16.position[i]}`);
 
-                    findCell.innerHTML = word.word16.letter[i];
-                    console.log(word.word16.letter[i]);
-                }
-                cell_3.innerHTML = '<span style="color: red; font-size:10px">16</span>Q';
-                cell_75.innerHTML = '-';
-            }
-        }
+        //             findCell.innerHTML = word.word16.letter[i];
+        //             console.log(word.word16.letter[i]);
+        //         }
+        //         cell_3.innerHTML = '<span style="color: red; font-size:10px">16</span>Q';
+        //         cell_75.innerHTML = '-';
+        //     }
+        // }
     };
 
     var widthTable = 18;
@@ -470,15 +502,15 @@
         }
         else if (cont_correctAnswer == 13) {
             word.word13.write();
-        }
-        else if (cont_correctAnswer == 14) {
-            word.word14.write();
-        }
-        else if (cont_correctAnswer == 15) {
-            word.word15.write();
-        }
-        else if (cont_correctAnswer == 16) {
-            word.word16.write();
+            // }
+            // else if (cont_correctAnswer == 14) {
+            //     word.word14.write();
+            // }
+            // else if (cont_correctAnswer == 15) {
+            //     word.word15.write();
+            // }
+            // else if (cont_correctAnswer == 16) {
+            //     word.word16.write();
 
             setTimeout(function () {
                 destroyGrid();
@@ -492,7 +524,7 @@
     function pontuation() {
         div_information.style.display = 'block';
 
-        div_information.innerHTML = '<h1 style="text-align: center;"><br>Parabéns!!</h1><br><br><p style="text-align: center;">Você finalizou o jogo.</p><br><br>';
+        div_information.innerHTML = `<h1 style="text-align: center;"><br>Parabéns!!</h1><br><br><p style="text-align: center;">Você finalizou o jogo.<br><br> Você acertou ${cont_correctAnswer} palavras.</p>`;
     }
 
     function renderGrid() {
@@ -534,9 +566,9 @@
 
             paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">${initial + 1}</span>`;
 
-            if (initial == 2 || initial == 3) {
-                paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">3_4</span>`;
-            }
+            // if (initial == 2 || initial == 3) {
+            //     paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">3_4</span>`;
+            // }
         }
     }
 
@@ -554,6 +586,7 @@
             // answer = answer.toLowerCase();
             if (answer == special_words[cont_correctAnswer]) {
                 div_verifiedAnswer.classList.add('correctAnswer');
+                div_verifiedAnswer.classList.remove('wrongAnswer');
                 div_verifiedAnswer.innerHTML = '<br>Resposta Correta!';
                 cont_correctAnswer++;
                 button_verify.disabled = true;
@@ -561,6 +594,7 @@
             }
             else {
                 div_verifiedAnswer.classList.add('wrongAnswer');
+                div_verifiedAnswer.classList.remove('correctAnswer');
                 div_verifiedAnswer.innerHTML = '<br>Resposta Incorreta, tente novamente';
             }
 
