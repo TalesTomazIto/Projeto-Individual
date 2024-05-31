@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>Another World | Quiz</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/style.css" />
     <script src="../js/sessao.js"></script>
@@ -23,15 +23,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <!-- <body onload=" atualizarFeed()"> -->
 <!-- validarSessao(),  -->
-<body>
+
+<body class="fundo">
 
     <div class="janela">
         <div class="header-left dash-header">
@@ -68,23 +70,142 @@
                 </a>
             </div>
 
+            <div class="btn-nav-white">
+                <a href="./ranking.html">
+                    <h3>Ranking</h3>
+                </a>
+            </div>
+
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
         </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+        <div class="quiz">
+            <div class="espaco"></div>
+            <div class="questoes">
+                <div id="regras" class="regras" style="display: block;">
+                    <h1>Quiz de Dark Souls:</h1>
+                    <p>
+                        Esse quiz é focado em perguntas relacionadas ao Dark Souls 3, mas ainda sim, existem algumas
+                        poucas perguntas
+                        referentes ao 1 e 2, e caso isso aconteça a pergunta especificará qual o jogo que em questão.
+                        Por fim,
+                        o quiz tem como objetivo testar conhecimentos e se divertir, então boa sorte e divirta-se.
+                    </p>
+                    <h3>Regras:</h3>
+                    <p>
+                        Não procure as respostas das perguntas em meios externos, exemplos: Google e
+                        navegadores e Inteligências artificiais. O quiz terá as respostas todas em inglês.
+                        Utilize apenas seu conecimento e sedesafie, seja honesto e torne a competição ainda mais divertida. 
+                        E por fim, divirta-se (novamente).
+                    </p>
+                    <div>
+                        <button class="button-5" role="button" onclick="comecarquiz()">Começar o Quiz</button>
+                    </div>
+                </div>
+                <div id="perguntas" class="perguntas" style="display: none;">
+                    <h1>Vamos começar!</h1> <br>
+                    <h3>1. Qual é o item de cura principal do dark souls 3?</h3>
+                    <select id="slct_1" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Firebomb</option>
+                        <option value="2">Kukri</option>
+                        <option value="3">Estus Flask</option>
+                        <option value="4">Siegbrau</option>
+                        <option value="5">Prism Stone</option>
+                    </select><br> <br>
+                    <h3>2. Qual o item que recupera completamente o FP do personagem?</h3>
+                    <select id="slct_2" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Hidden Blessing</option>
+                        <option value="2">Purple Moss Clup</option>
+                        <option value="3">Ashen Estus Flask</option>
+                        <option value="4">Divine Blessing</option>
+                        <option value="5">Pale Pine Resin</option>
+                    </select><br> <br>
+                    <h3>3. Qual o nome do npc ladrão que pode te ajudar em sua jornada?</h3>
+                    <select id="slct_3" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Andre</option>
+                        <option value="2">Ludleth</option>
+                        <option value="3">Hodrick</option>
+                        <option value="4">Greirat</option>
+                        <option value="5">Argo</option>
+                    </select><br> <br>
+                    <h3>4. Qual o tipo de item que desbloqueia novas infusões em armas?</h3>
+                    <select id="slct_4" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Titanite</option>
+                        <option value="2">Gem</option>
+                        <option value="3">Coal</option>
+                        <option value="4">Tome</option>
+                        <option value="5">Key</option>
+                    </select><br> <br>
+                    <h3>5. Qual o nome da área de transição entre Assentamento dos Mortos Vivos e Farron Keep?</h3>
+                    <select id="slct_5" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">No Man's Wharf</option>
+                        <option value="2">Farron Crossing</option>
+                        <option value="3">Irithyll Dungeon</option>
+                        <option value="4">Iron Keep</option>
+                        <option value="5">Road Of Sacrifices</option>
+                    </select><br> <br>
+                    <h3>6. Qual o Boss conhecido como o Devorador de Deuses?</h3>
+                    <select id="slct_6" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Vordt</option>
+                        <option value="2">Wolnir</option>
+                        <option value="3">Oceiros</option>
+                        <option value="4">Aldrich</option>
+                        <option value="5">Gundyr</option>
+                    </select><br> <br>
+                    <h3>7. Qual o milagre que quando usado evita danos letais?</h3>
+                    <select id="slct_7" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Tears of Denial</option>
+                        <option value="2">Bountiful Sunlight</option>
+                        <option value="3">Caressing Tears</option>
+                        <option value="4">Sacred Oath</option>
+                        <option value="5">Wrath of the Gods</option>
+                    </select><br> <br>
+                    <h3>8. Qual Status Effect é exclusivo do Dark Souls 3?</h3>
+                    <select id="slct_8" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Bleed</option>
+                        <option value="2">Toxic</option>
+                        <option value="3">Hollowing</option>
+                        <option value="4">Frostbite</option>
+                        <option value="5">Curse</option>
+                    </select><br> <br>
+                    <h3>9. Qual dos npc's está relacionado ao aprendizado de feitiçarias?</h3>
+                    <select id="slct_9" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Irina of Carim</option>
+                        <option value="2">Orbeck of Vinhein</option>
+                        <option value="3">Ludleth of Courland</option>
+                        <option value="4">Karla</option>
+                        <option value="5">Anri of Astora</option>
+                    </select><br> <br>
+                    <h3>10. O que é o Picklepum?</h3>
+                    <select id="slct_10" class="select">
+                        <option value="0" selected disabled>Selecione uma opção:</option>
+                        <option value="1">Corvo</option>
+                        <option value="2">Lobo</option>
+                        <option value="3">Peregrino</option>
+                        <option value="4">Cogumelo</option>
+                        <option value="5">Águia</option>
+                    </select><br> <br>
+                    <button class="button-5" role="button" onclick="terminarquiz()">Terminar Quiz</button>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
 
 
 </body>
@@ -92,78 +213,125 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let proximaAtualizacao;
+    function comecarquiz() {
+        regras.style.display = "none";
+        perguntas.style.display = "block"
+    }
 
-    window.onload = exibirAquariosDoUsuario();
+    function terminarquiz() {
+        var p1 = slct_1.value;
+        var p2 = slct_2.value;
+        var p3 = slct_3.value;
+        var p4 = slct_4.value;
+        var p5 = slct_5.value;
+        var p6 = slct_6.value;
+        var p7 = slct_7.value;
+        var p8 = slct_8.value;
+        var p9 = slct_9.value;
+        var p10 = slct_10.value;
+        var acertos = 0;
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+        if (p1 == 0 || p2 == 0 || p3 == 0 || p4 == 0 || p5 == 0 ||
+            p6 == 0 || p7 == 0 || p8 == 0 || p9 == 0 || p10 == 0) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops! Faltaram campos a serem preenchidos.";
+        } else {
+            if (p1 == 3) acertos++;
+            if (p2 == 1) acertos++;
+            if (p3 == 4) acertos++;
+            if (p4 == 3) acertos++;
+            if (p5 == 5) acertos++;
+            if (p6 == 4) acertos++;
+            if (p7 == 1) acertos++;
+            if (p8 == 4) acertos++;
+            if (p9 == 2) acertos++;
+            if (p10 == 1) acertos++;
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
+            perguntas.style.display = "none"
+            regras.style.display = "block"
+            regras.innerHTML = `
+                     <h1>Parabéns, você finalizou o Quiz!</h1>
+                    <p>
+                        Você acertou um total de... ${acertos} questões! 
+                    </p>
+                    `
         }
     }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
 
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
+    // let proximaAtualizacao;
 
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
+    // window.onload = exibirAquariosDoUsuario();
 
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
+    // function exibirAquariosDoUsuario() {
+    //     var aquarios = JSON.parse(sessionStorage.AQUARIOS);
+    //     aquarios.forEach(item => {
+    //         document.getElementById("btnAquario").innerHTML += `
+    //         <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+    //         `
 
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
+    //         document.getElementById("graficos").innerHTML += `
+    //             <div id="grafico${item.id}" class="display-none">
+    //                 <h3 class="tituloGraficos">
+    //                     <span id="tituloAquario${item.id}">${item.descricao}</span>
+    //                 </h3>
+    //                 <div class="graph">
+    //                     <canvas id="myChartCanvas${item.id}"></canvas>
+    //                 </div>
+    //                 <div class="label-captura">
+    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
+    //                 </div>
+    //             </div>
+    //         `
+
+    //         obterDadosGrafico(item.id)
+    //     });
+
+    //     if (aquarios.length > 0) {
+    //         exibirAquario(aquarios[0].id)
+    //     }
+    // }
+
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+    //     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+    // }
+
+    // function exibirAquario(idAquario) {
+    //     let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+
+    //     for (i = 0; i < todosOsGraficos.length; i++) {
+    //         // exibindo - ou não - o gráfico
+    //         if (todosOsGraficos[i].id != idAquario) {
+    //             let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+    //             if (elementoAtual.classList.contains("display-block")) {
+    //                 elementoAtual.classList.remove("display-block")
+    //             }
+    //             elementoAtual.classList.add("display-none")
+
+    //             // alterando estilo do botão
+    //             let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+    //             if (btnAtual.classList.contains("btn-pink")) {
+    //                 btnAtual.classList.remove("btn-pink")
+    //             }
+    //             btnAtual.classList.add("btn-white")
+    //         }
+    //     }
+
+    //     // exibindo - ou não - o gráfico
+    //     let graficoExibir = document.getElementById(`grafico${idAquario}`)
+    //     graficoExibir.classList.remove("display-none")
+    //     graficoExibir.classList.add("display-block")
+
+    //     // alterando estilo do botão
+    //     let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+    //     btnExibir.classList.remove("btn-white")
+    //     btnExibir.classList.add("btn-pink")
+    // }
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -176,155 +344,155 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    // function obterDadosGrafico(idAquario) {
 
-        alterarTitulo(idAquario)
+    //     alterarTitulo(idAquario)
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+    //     fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+    //                 plotarGrafico(resposta, idAquario);
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    // function plotarGrafico(resposta, idAquario) {
 
-        console.log('iniciando plotagem do gráfico...');
+    //     console.log('iniciando plotagem do gráfico...');
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+    //     // Criando estrutura para plotar gráfico - labels
+    //     let labels = [];
 
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
+    //     // Criando estrutura para plotar gráfico - dados
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'Umidade',
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'rgb(75, 192, 192)',
+    //             tension: 0.1
+    //         },
+    //         {
+    //             label: 'Temperatura',
+    //             data: [],
+    //             fill: false,
+    //             borderColor: 'rgb(199, 52, 52)',
+    //             tension: 0.1
+    //         }]
+    //     };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+    //     console.log('----------------------------------------------')
+    //     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    //     console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
+    //     // Inserindo valores recebidos em estrutura para plotar o gráfico
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.momento_grafico);
+    //         dados.datasets[0].data.push(registro.umidade);
+    //         dados.datasets[1].data.push(registro.temperatura);
+    //     }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+    //     console.log('----------------------------------------------')
+    //     console.log('O gráfico será plotado com os respectivos valores:')
+    //     console.log('Labels:')
+    //     console.log(labels)
+    //     console.log('Dados:')
+    //     console.log(dados.datasets)
+    //     console.log('----------------------------------------------')
 
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+    //     // Criando estrutura para plotar gráfico - config
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     };
 
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
+    //     // Adicionando gráfico criado em div na tela
+    //     let myChart = new Chart(
+    //         document.getElementById(`myChartCanvas${idAquario}`),
+    //         config
+    //     );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
+    //     setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    // }
 
 
+    // // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+    // // buscando a última medida inserida em tabela contendo as capturas,
 
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
+    // //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    // //     Para ajustar o "select", ajuste o comando sql em src/models
+    // function atualizarGrafico(idAquario, dados, myChart) {
 
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+    //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (novoRegistro) {
 
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+    //                 obterdados(idAquario);
+    //                 // alertar(novoRegistro, idAquario);
+    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+    //                 console.log(`Dados atuais do gráfico:`);
+    //                 console.log(dados);
 
-                        myChart.update();
-                    }
+    //                 let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+    //                 avisoCaptura.innerHTML = ""
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
 
-    }
+    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+    //                     console.log("---------------------------------------------------------------")
+    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+    //                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+    //                     console.log("Horário do novo dado capturado:")
+    //                     console.log(novoRegistro[0].momento_grafico)
+    //                     console.log("Horário do último dado capturado:")
+    //                     console.log(dados.labels[dados.labels.length - 1])
+    //                     console.log("---------------------------------------------------------------")
+    //                 } else {
+    //                     // tirando e colocando valores no gráfico
+    //                     dados.labels.shift(); // apagar o primeiro
+    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+    //                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+    //                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+    //                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+    //                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+    //                     myChart.update();
+    //                 }
+
+    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+
+    // }
 </script>

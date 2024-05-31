@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>Another World | Cruzadinha</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/style.css" />
     <script src="../js/sessao.js"></script>
@@ -23,14 +23,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <!-- <body onload=" atualizarFeed()"> -->
 <!-- validarSessao(),  -->
+
 <body>
 
     <div class="janela">
@@ -68,22 +70,75 @@
                 </a>
             </div>
 
+            <div class="btn-nav-white">
+                <a href="./ranking.html">
+                    <h3>Ranking</h3>
+                </a>
+            </div>
+
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
         </div>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
+        <div class="fundo">
+            <div class="espaco"></div>
+            <div class="cruzadinha">
+                <div class="cabecalho">
+                    <div class="comecarcruz">
+                        <h1>Palavras-Cruzadas</h1><br>
+                        <div class="div_button">
+                            <button class="button" id="bt_start" onclick="start()">Começar o Jogo</button>
+                            <button class="button" style="display: none" id="bt_destroyGame"
+                                onclick="destroyGrid()">Encerrar o
+                                Jogo</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="base">
+                    <div class="container">
+                        <div style="display: none" id="div_verifiedAnswer">
+                            <h3>Resposta Correta</h3>
+                        </div>
+                        <div id="div_game">
+                            <br>
+                            <div id="div_information" style="padding-left: 20px; padding-right: 20px;">
+                                <br>
+                                <h2>Intruções do Jogo</h2><br>
+                                <p>
+                                    Clique em "Começar o Jogo" para iniciar uma partida. <br><br>
+                                    Perguntas serão exibidas na parte inferior do quadro. <br><br>
+                                    Insira a sua resposta na caixa de texto e clique em "Verificar" para conferir a sua
+                                    resposta.<br><br>
+                                    Para respostas que possuem espaço deve-se substituir o espaço por hífem (-) <br> <br>
+                                    As respostas devem ser escritas em inglês e em maiúsculo. <br> <br>
+                                    A partida acaba quando as 16 questões forem respondidas. <br><br>
+                                    Boa sorte! <br> <br>
+                                </p>
+                            </div>
+                            <br>
+                            <div id="div_canvasCruzada"></div>
+                            <br>
+                            <div style="display: none" id="div_questions">
+                                <center>
+                                    <br>
+                                    <span id="span_questionText"></span>
+                                    <input oninput="resposta()" type="text" id="input_answer" placeholder="Resposta"><br>
+                                    <br>
+                                    <button id="button_verify" onclick="verify()" class="button" disabled
+                                        style="opacity: 50%;">Verificar</button>
+                                </center>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
     </div>
 
 
@@ -94,237 +149,439 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let proximaAtualizacao;
+    var special_words = ['ATTUNEMENT', 'MERCENARY', 'Registradores', 'RAM', 'ROM', 'EPROM', 'FLASH', 'Memória de Massa', 'DMA', 'CS', 'Adress Bus', 'Data Bus', 'I5', 'I7', 'Dual Core', 'Quad Core'];
 
-    window.onload = exibirAquariosDoUsuario();
+    var questions_list = [
+        'Qual é o status que aumenta a quantidade de espaços de magia?',
+        'Qual é a classe com a maior destreza base do jogo?',
+        'Tipo de memória que se encontra no topo da hierarquia de memória',
+        'Tipo de memória volátil que tem como nome Random Acess Memory. Qual é a sigla deste componente?',
+        'Tipo de memória não volátil que oferece dados apenas para leitura',
+        'Tipo de memória não volátil que precisa ter seu chip exposto a luz ultravioleta para apagar seu conteúdo',
+        'Tipo particular de EEPROM que mantém as informações armazenadas sem a necessidade de uma fonte de energia elétrica',
+        'Tipo de memória que precisa ter seu conteúdo copiado na RAM para poder ser executado pela CPU',
+        'Permite que periféricos acessem diretamente a RAM sem ocupar processamento',
+        'Também conhecido como Slave Select (SS). Usado para selecionar um ou um conjunto de circuitos que estão conectados no computador',
+        'Grupo de linhas ou trilhas usadas para se referir a um endereço físico na memória. O número de trilhas determina a quantidade de endereços na memória física',
+        'Também chamado de Memory Bus. É responsável para carregar os dados.',
+        'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em setembro de 2009',
+        'Modelo de processador desenvolvido pela Intel qu teve sua primeira versão lançada em novembro de 2008',
+        'Tipo de processador que possui dois processadores ou melhor dizendo ‘dois centros, núcleos ou cores de execução‘ no mesmo circuito integrado.  Cada core tem sua própria memória cash e controlador o que permite que funcione mais efetivamente do que um processador single',
+        'Segue o mesmo princípio de um dual-core, mas agora em teoria tem o dobro da capacidade de processamento'
+    ];
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+    var filledCell = [2, 20, 38, 56, 133, 134, 135, 59, 77, 95, 113, 131, 149,
+        167, 185, 203, 221, 239, 257, 275, 59, 60, 61, 272, 290, 308, 236,
+        254, 272, 290, 308, 116, 134, 152, 170, 188, 27, 45, 63, 81, 99, 117,
+        135, 153, 171, 189, 207, 225, 243, 261, 279, 297, 203, 204, 205, 312,
+        313, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 187, 20, 223,
+        241, 259, 277, 295, 313, 117, 118, 113, 114, 37, 38, 39, 40, 41, 42,
+        43, 44, 45, 3, 21, 39, 57, 75, 93, 111, 129, 147];
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+    var firstIndex = [2, 133, 59, 59, 272, 236, 116, 27, 203, 312, 270, 187, 117, 113, 37, 3];
 
-            obterDadosGrafico(item.id)
-        });
+    var word = {
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
+        word1: {
+            letter: special_words[0].split(''),
+            position: [2, 20, 38, 56],
+            write: function () {
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
+                for (i in word.word1.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word1.position[i]}`);
 
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
+                    findCell.innerHTML = word.word1.letter[i];
+                    console.log(word.word1.letter[i]);
                 }
-                elementoAtual.classList.add("display-none")
+                cell_2.innerHTML = '<span style="color: red; font-size:10px">1</span>R';
+            }
+        },
+        word2: {
+            letter: special_words[1].split(''),
+            position: [133, 134, 135],
+            write: function () {
+                for (i in word.word2.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word2.position[i]}`);
 
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
+                    findCell.innerHTML = word.word2.letter[i];
+                    console.log(word.word2.letter[i]);
                 }
-                btnAtual.classList.add("btn-white")
+                cell_133.innerHTML = '<span style="color: red; font-size:10px">2</span>U';
+
+            }
+        },
+        word3: {
+            letter: special_words[2].split(''),
+            position: [59, 77, 95, 113, 131, 149, 167, 185, 203, 221, 239, 257, 275],
+            write: function () {
+                for (i in word.word3.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word3.position[i]}`);
+
+                    findCell.innerHTML = word.word3.letter[i];
+                    console.log(word.word3.letter[i]);
+                }
+                cell_59.innerHTML = '<span style="color: red; font-size:10px">3_4</span>R';
+                cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>i';
+            }
+        },
+        word4: {
+            letter: special_words[3].split(''),
+            position: [59, 60, 61],
+            write: function () {
+                for (i in word.word4.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word4.position[i]}`);
+
+                    findCell.innerHTML = word.word4.letter[i];
+                    console.log(word.word4.letter[i]);
+                }
+                cell_59.innerHTML = '<span style="color: red; font-size:10px">3_4</span>R';
+            }
+        },
+        word5: {
+            letter: special_words[4].split(''),
+            position: [272, 290, 308],
+            write: function () {
+                for (i in word.word5.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word5.position[i]}`);
+
+                    findCell.innerHTML = word.word5.letter[i];
+                    console.log(word.word5.letter[i]);
+                }
+                cell_272.innerHTML = '<span style="color: red; font-size:10px">5</span>R';
+            }
+        },
+        word6: {
+            letter: special_words[5].split(''),
+            position: [236, 254, 272, 290, 308],
+            write: function () {
+                for (i in word.word6.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word6.position[i]}`);
+
+                    findCell.innerHTML = word.word6.letter[i];
+                    console.log(word.word6.letter[i]);
+                }
+                cell_236.innerHTML = '<span style="color: red; font-size:10px">6</span>E';
+            }
+        },
+        word7: {
+            letter: special_words[6].split(''),
+            position: [116, 134, 152, 170, 188],
+            write: function () {
+                for (i in word.word7.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word7.position[i]}`);
+
+                    findCell.innerHTML = word.word7.letter[i];
+                    console.log(word.word7.letter[i]);
+                }
+                cell_116.innerHTML = '<span style="color: red; font-size:10px">7</span>F';
+            }
+        },
+        word8: {
+            letter: special_words[7].split(''),
+            position: [27, 45, 63, 81, 99, 117, 135, 153, 171, 189, 207, 225, 243, 261, 279, 297],
+            write: function () {
+                for (i in word.word8.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word8.position[i]}`);
+
+                    findCell.innerHTML = word.word8.letter[i];
+                    console.log(word.word8.letter[i]);
+                }
+                cell_27.innerHTML = '<span style="color: red; font-size:10px">8</span>M';
+                cell_117.innerHTML = '<span style="color: red; font-size:10px">13</span>i';
+                cell_153.innerHTML = '-';
+                cell_207.innerHTML = '-';
+
+            }
+        },
+        word9: {
+            letter: special_words[8].split(''),
+            position: [203, 204, 205, 312, 313],
+            write: function () {
+                for (i in word.word9.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word9.position[i]}`);
+
+                    findCell.innerHTML = word.word9.letter[i];
+                    console.log(word.word9.letter[i]);
+                }
+                cell_203.innerHTML = '<span style="color: red; font-size:10px">9</span>D';
+            }
+        },
+        word10: {
+            letter: special_words[9].split(''),
+            position: [312, 313],
+            write: function () {
+                for (i in word.word10.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word10.position[i]}`);
+
+                    findCell.innerHTML = word.word10.letter[i];
+                    console.log(word.word10.letter[i]);
+                }
+                cell_312.innerHTML = '<span style="color: red; font-size:10px">10</span>C';
+            }
+        },
+        word11: {
+            letter: special_words[10].split(''),
+            position: [270, 271, 272, 273, 274, 275, 276, 277, 278, 279],
+            write: function () {
+                for (i in word.word11.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word11.position[i]}`);
+
+                    findCell.innerHTML = word.word11.letter[i];
+                    console.log(word.word11.letter[i]);
+                }
+                cell_270.innerHTML = '<span style="color: red; font-size:10px">11</span>A';
+                cell_276.innerHTML = '-';
+            }
+        },
+        word12: {
+            letter: special_words[11].split(''),
+            position: [187, 205, 223, 241, 259, 277, 295, 313, 117, 118],
+            write: function () {
+                for (i in word.word12.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word12.position[i]}`);
+
+                    findCell.innerHTML = word.word12.letter[i];
+                    console.log(word.word12.letter[i]);
+                }
+                cell_187.innerHTML = '<span style="color: red; font-size:10px">12</span>D';
+                cell_259.innerHTML = '-';
+            }
+        },
+        word13: {
+            letter: special_words[12].split(''),
+            position: [117, 118],
+            write: function () {
+                for (i in word.word13.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word13.position[i]}`);
+
+                    findCell.innerHTML = word.word13.letter[i];
+                    console.log(word.word13.letter[i]);
+                }
+                cell_117.innerHTML = '<span style="color: red; font-size:10px">13</span>I';
+            }
+        },
+        word14: {
+            letter: special_words[13].split(''),
+            position: [113, 114],
+            write: function () {
+                for (i in word.word14.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word14.position[i]}`);
+
+                    findCell.innerHTML = word.word14.letter[i];
+                    console.log(word.word14.letter[i]);
+                }
+                cell_113.innerHTML = '<span style="color: red; font-size:10px">14</span>I';
+            }
+        },
+        word15: {
+            letter: special_words[14].split(''),
+            position: [37, 38, 39, 40, 41, 42, 43, 44, 45],
+            write: function () {
+                for (i in word.word15.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word15.position[i]}`);
+
+                    findCell.innerHTML = word.word15.letter[i];
+                    console.log(word.word15.letter[i]);
+                }
+                cell_37.innerHTML = '<span style="color: red; font-size:10px">15</span>D';
+                cell_41.innerHTML = '-';
+            }
+        },
+        word16: {
+            letter: special_words[15].split(''),
+            position: [3, 21, 39, 57, 75, 93, 111, 129, 147],
+            write: function () {
+                for (i in word.word16.letter) {
+                    var findCell = document.querySelector(`#cell_${word.word16.position[i]}`);
+
+                    findCell.innerHTML = word.word16.letter[i];
+                    console.log(word.word16.letter[i]);
+                }
+                cell_3.innerHTML = '<span style="color: red; font-size:10px">16</span>Q';
+                cell_75.innerHTML = '-';
             }
         }
+    };
 
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
+    var widthTable = 18;
+    var heightTable = 18;
 
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
+
+    var cont_correctAnswer = 0;
+
+    function start() {
+        cont_correctAnswer = 0;
+        bt_start.style.display = 'none';
+        bt_destroyGame.style.display = 'block';
+        div_questions.style.display = 'block';
+        div_information.innerHTML = '';
+        renderGrid();
+        gameSequence();
+
     }
 
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+    function destroyGrid() {
+        bt_start.style.display = 'block';
+        bt_destroyGame.style.display = 'none';
+        div_questions.style.display = 'none';
 
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+        document.querySelector('#div_canvasCruzada').innerHTML = '';
+        pontuation();
+    }
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    function gameSequence() {
+        span_questionText.innerHTML = `<b>${cont_correctAnswer + 1}.</b> ${questions_list[cont_correctAnswer]}`;
 
-        alterarTitulo(idAquario)
+        if (cont_correctAnswer == 1) {
+            word.word1.write();
+        }
+        else if (cont_correctAnswer == 2) {
+            word.word2.write();
+        }
+        else if (cont_correctAnswer == 3) {
+            word.word3.write();
+        }
+        else if (cont_correctAnswer == 4) {
+            word.word4.write();
+        }
+        else if (cont_correctAnswer == 5) {
+            word.word5.write();
+        }
+        else if (cont_correctAnswer == 6) {
+            word.word6.write();
+        }
+        else if (cont_correctAnswer == 7) {
+            word.word7.write();
+        }
+        else if (cont_correctAnswer == 8) {
+            word.word8.write();
+        }
+        else if (cont_correctAnswer == 9) {
+            word.word9.write();
+        }
+        else if (cont_correctAnswer == 10) {
+            word.word10.write();
+        }
+        else if (cont_correctAnswer == 11) {
+            word.word11.write();
+        }
+        else if (cont_correctAnswer == 12) {
+            word.word12.write();
+        }
+        else if (cont_correctAnswer == 13) {
+            word.word13.write();
+        }
+        else if (cont_correctAnswer == 14) {
+            word.word14.write();
+        }
+        else if (cont_correctAnswer == 15) {
+            word.word15.write();
+        }
+        else if (cont_correctAnswer == 16) {
+            word.word16.write();
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
+            setTimeout(function () {
+                destroyGrid();
+            }, 3000);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
     }
 
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
 
-        console.log('iniciando plotagem do gráfico...');
+    function pontuation() {
+        div_information.style.display = 'block';
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+        div_information.innerHTML = '<h1 style="text-align: center;"><br>Parabéns!!</h1><br><br><p style="text-align: center;">Você finalizou o jogo.</p><br><br>';
+    }
 
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
+    function renderGrid() {
+        var tableGame = '<table id="gridGame" cellspacing=0 cellpadding=0>';
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+        // &nbsp its used to set null value to a cell
+        var cellContent_tableGame = '&nbsp';
+        var cell = 0;
+        for (var row = 1; row <= heightTable; row++) {
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            tableGame += `<tr id="row_${row}">`;
+
+            for (var column = 1; column <= widthTable; column++, cell++) {
+                tableGame += `<td class="deadCell" id="cell_${cell}">` + cellContent_tableGame + '</td>';
+
+            }
+            tableGame += '</tr>';
+
+        }
+        tableGame += '</table>';
+
+        document.querySelector('#div_canvasCruzada').innerHTML = tableGame;
+
+        paintCells();
+    }
+
+
+
+    function paintCells() {
+
+        for (item in filledCell) {
+            var paintCell = document.getElementById(`cell_${filledCell[item]}`);
+            paintCell.removeAttribute('deadCell');
+            paintCell.setAttribute('class', 'availableCell');
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+        for (var initial = 0; initial < firstIndex.length; initial++) {
+            var paintIndex_cell = document.getElementById(`cell_${firstIndex[initial]}`);
 
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+            paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">${initial + 1}</span>`;
 
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+            if (initial == 2 || initial == 3) {
+                paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">3_4</span>`;
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
+        }
     }
+
+    function resposta() {
+        if (input_answer != '') {
+            button_verify.disabled = false;
+            button_verify.style.opacity = '100%'
+        }
+    }
+
+    function verify() {
+        var answer = input_answer.value;
+
+        if (answer != '') {
+            // answer = answer.toLowerCase();
+            if (answer == special_words[cont_correctAnswer]) {
+                div_verifiedAnswer.classList.add('correctAnswer');
+                div_verifiedAnswer.innerHTML = '<br>Resposta Correta!';
+                cont_correctAnswer++;
+                button_verify.disabled = true;
+                button_verify.style.opacity = '50%'
+            }
+            else {
+                div_verifiedAnswer.classList.add('wrongAnswer');
+                div_verifiedAnswer.innerHTML = '<br>Resposta Incorreta, tente novamente';
+            }
+
+            button_verify.disabled = true;
+            button_verify.style.opacity = '50%'
+
+            setTimeout(function () {
+                div_verifiedAnswer.style.display = 'block';
+            }, 500);
+
+            setTimeout(function () {
+                div_verifiedAnswer.style.display = 'none';
+            }, 3000);
+
+            input_answer.value = '';
+            gameSequence();
+        }
+        else {
+            button_verify.disabled = true;
+            button_verify.style.opacity = '50%'
+        }
+    }
+
 </script>
