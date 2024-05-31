@@ -704,7 +704,6 @@ tr {
 }
 
 td {
-  border: 1px solid rgb(253, 219, 126);
   width: 30px;
   height: 30px;
   text-align: center;
@@ -720,6 +719,7 @@ td {
   font-size: 20px;
   border-radius: 10px;
   box-shadow: black;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .cruzadinha input {
@@ -825,4 +825,95 @@ footer p{
   background-color: #EC7063  ;
   color: #7B241C;
   border:1px #7B241C solid;
+}
+
+.ranking {
+  width: 100%;
+  height: 950px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box {
+  margin: 2% 2% 2% 2%;
+  background-color: #000000a8;
+  height: 900px;
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo {
+  height: 90px;
+  font-size: 100%;
+}
+
+.colunas {
+  height: 25px;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 100%;
+  flex-direction: row;
+}
+
+.colunas .nomeuser {
+  width: 35%;
+}
+
+.colunas .pontosuser {
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.users {
+  height: 700px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+.boxes {
+
+  width: 90%;
+  background-color: rgb(253, 219, 126);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size: 30px;
+}
+
+.boxes .nomeuser {
+  padding-left: 2%;
+  width: 30%;
+}
+
+.boxes .pontosuser {
+  width: 68%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pontosq {
+  padding-left: 15%;
+  width: 22%;
+}
+
+.pontosc {
+  width: 21%;
+}
+
+.pontost {
+  width: 10%;
 }

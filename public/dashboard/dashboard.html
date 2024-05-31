@@ -98,7 +98,8 @@
                     <p>
                         Não procure as respostas das perguntas em meios externos, exemplos: Google e
                         navegadores e Inteligências artificiais. O quiz terá as respostas todas em inglês.
-                        Utilize apenas seu conecimento e sedesafie, seja honesto e torne a competição ainda mais divertida. 
+                        Utilize apenas seu conecimento e sedesafie, seja honesto e torne a competição ainda mais
+                        divertida.
                         E por fim, divirta-se (novamente).
                     </p>
                     <div>
@@ -107,7 +108,7 @@
                 </div>
                 <div id="perguntas" class="perguntas" style="display: none;">
                     <h1>Vamos começar!</h1> <br>
-                    <h3>1. Qual é o item de cura principal do dark souls 3?</h3>
+                    <h3>1. Qual é o item de cura principal d dark souls?</h3>
                     <select id="slct_1" class="select">
                         <option value="0" selected disabled>Selecione uma opção:</option>
                         <option value="1">Firebomb</option>
@@ -125,7 +126,7 @@
                         <option value="4">Divine Blessing</option>
                         <option value="5">Pale Pine Resin</option>
                     </select><br> <br>
-                    <h3>3. Qual o nome do npc ladrão que pode te ajudar em sua jornada?</h3>
+                    <h3>3. Qual o nome do npc ladrão que pode te ajudar em sua jornada?(DS3)</h3>
                     <select id="slct_3" class="select">
                         <option value="0" selected disabled>Selecione uma opção:</option>
                         <option value="1">Andre</option>
@@ -134,7 +135,7 @@
                         <option value="4">Greirat</option>
                         <option value="5">Argo</option>
                     </select><br> <br>
-                    <h3>4. Qual o tipo de item que desbloqueia novas infusões em armas?</h3>
+                    <h3>4. Qual o tipo de item que desbloqueia novas infusões em armas?(DS3)</h3>
                     <select id="slct_4" class="select">
                         <option value="0" selected disabled>Selecione uma opção:</option>
                         <option value="1">Titanite</option>
@@ -256,11 +257,25 @@
                         Você acertou um total de... ${acertos} questões! 
                     </p>
                     `
+
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    
+                    pontuacaoServer: acertos
+                    
+                }),
+            })
         }
     }
 
 
-        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     // let proximaAtualizacao;
 

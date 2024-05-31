@@ -99,6 +99,8 @@
     function entrar() {
         aguardar();
 
+        var lista_id = [];
+
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
@@ -136,11 +138,12 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    lista_id.push(json.id)
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 3000); // apenas para exibir o loading
 
                 });
 
@@ -157,7 +160,40 @@
         }).catch(function (erro) {
             console.log(erro);
         })
+        console.log('começando segundo fetch com o valor de', lista_id[0])
+        setTimeout(() => {
+            console.log('terminando segundo fetch com o valor de ', lista_id[0])
+        fetch("/usuarios/pontuacao", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
 
+        idServer: lista_id[0]
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Login realizado com sucesso! ";
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o login!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+     
+          }, "2000");
         return false;
     }
 
