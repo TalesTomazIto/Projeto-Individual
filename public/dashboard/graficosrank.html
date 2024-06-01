@@ -61,7 +61,7 @@
                 </a>
             </div>
 
-            <div class="btn-nav">
+            <div class="btn-nav-white">
                 <a href="./ranking.html">
                     <h3>Ranking</h3>
                 </a>
@@ -73,46 +73,26 @@
 
         </div>
 
-
         <div class="ranking">
             <div class="espaco"></div>
             <div class="inicio">
                 <div class="box">
                     <div class="titulo">
-                        <h1>Ranking de Usuários:</h1>
+                        <h1>Gráfico de pontuação de Usuários:</h1>
                     </div>
-                    <div class="colunas">
-                        <div class="nomeuser">
-                            <span>Nome:</span>
-                        </div>
-                        <div class="pontosuser">
-                            <span>|</span>
-                            <span>Pontos no Quiz:</span>
-                            <span>|</span>
-                            <span>Pontos na Cruzadinha:</span>
-                            <span>|</span>
-                            <span>Pontuação Total:</span>
-                        </div>
-                    </div>
-                    <!-- Aqui são inseridos novos usuários no ranking: -->
-                    <div class="users" id="usersRanking">
-
-
-                    </div>
-                    <div class="btngraficos">
-                        <button class="button-5" role="button" onclick="irgraficos()">Gráficos</button>
+                    <div class="grafico">
+                        <canvas id="canva1"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
+
     </div>
 
 </body>
 
-
 </html>
-
 
 <script>
 
@@ -130,28 +110,33 @@
                 resposta.json().then(function (json) {
                     console.log(json)
 
-                    for (var i = 0; i < json.length; i++) {
-                        console.log(json[i])
-                        usersRanking.innerHTML += `
-                            <div class="boxes">
-                                <div class="nomeuser">
-                                    <span>${json[i].nome}</span>
-                                </div>
-                                <div class="pontosuser">
-                                    <div class="pontosq">
-                                        <span>${json[i].pontquiz}</span>
-                                    </div>
-                                    <div class="pontosc">
-                                        <span>${json[i].pontcruz}</span>
-                                    </div>
-                                    <div class="pontost">
-                                        <span>${json[i].pontquiz + json[i].pontcruz}</span>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            `
-                    }
+                    new Chart('#canva1', {
+                        type: "bar",
+                        data: {
+                            labels: json[0].nome,
+                            datasets: [
+                                {
+                                    label: "Pontos Quiz",
+                                    data: json[0].pontquiz,
+                                    borderWidth: 1,
+                                    borderColor: "#FF6384",
+                                    backgroundColor: "#FF6384",
+                                },
+                                {
+                                    label: "Pontos Cruzadinha",
+                                    data: json[0].pontcruz,
+                                    borderWidth: 1,
+                                    borderColor: "#36A2EB",
+                                    backgroundColor: "#36A2EB",
+                                },
+                            ],
+                        },
+                        options: {
+                            y: {
+                                max: 100,
+                            },
+                        },
+                    });
 
                 })
                 console.log("resposta: ", resposta);
@@ -162,9 +147,5 @@
 
             });
     }
-
-function irgraficos() {
-    window.location.href="graficosrank.html"
-}
 
 </script>
