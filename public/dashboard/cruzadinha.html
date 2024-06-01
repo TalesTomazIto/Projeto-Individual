@@ -459,6 +459,50 @@
 
         document.querySelector('#div_canvasCruzada').innerHTML = '';
         pontuation();
+
+        fetch("/usuarios/pegarPontuacao", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+
+                    idServer: sessionStorage.ID_USUARIO
+                    
+                }),
+            })
+                .then(function (resposta) {
+                    resposta.json().then(function (json) {
+                        console.log(json)
+
+                        fetch("/usuarios/atualizarPontuacao", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                idServer: sessionStorage.ID_USUARIO,
+                                pontquizServer: json[0].pontquiz,
+                                pontcruzServer: json[0].pontcruz + cont_correctAnswer
+                            }),
+                        })
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
+
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+
+                            });
+
+                    })
+                    console.log("resposta: ", resposta);
+
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                   
+                });
     }
 
     function gameSequence() {

@@ -258,19 +258,49 @@
                     </p>
                     `
 
-            fetch("/usuarios/cadastrar", {
+            fetch("/usuarios/pegarPontuacao", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    
-                    pontuacaoServer: acertos
+
+                    idServer: sessionStorage.ID_USUARIO
                     
                 }),
             })
+                .then(function (resposta) {
+                    resposta.json().then(function (json) {
+                        console.log(json)
+
+                        fetch("/usuarios/atualizarPontuacao", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                idServer: sessionStorage.ID_USUARIO,
+                                pontquizServer: json[0].pontquiz + acertos,
+                                pontcruzServer: json[0].pontcruz
+                            }),
+                        })
+                            .then(function (resposta) {
+                                console.log("resposta: ", resposta);
+
+                            })
+                            .catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+
+                            });
+
+                    })
+                    console.log("resposta: ", resposta);
+
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                   
+                });
         }
     }
 

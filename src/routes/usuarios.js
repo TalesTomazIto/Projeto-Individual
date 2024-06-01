@@ -12,8 +12,20 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.post("/pontuacao", function (req, res) {
-    usuarioController.pontuacao(req, res);
+router.post("/cadastrarPontuacao", function (req, res) {
+    usuarioController.cadastrarPontuacao(req, res);
+});
+
+router.post("/pegarPontuacao", function (req, res) {
+    usuarioController.pegarPontuacao(req, res);
+});
+
+router.post("/atualizarPontuacao", function (req, res) {
+    usuarioController.atualizarPontuacao(req, res);
+});
+
+router.post("/pegarRanking", function (req, res) {
+    usuarioController.pegarRanking(req, res);
 });
 
 module.exports = router;

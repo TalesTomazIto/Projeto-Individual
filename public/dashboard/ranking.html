@@ -23,7 +23,7 @@
 </head>
 <!-- validarSessao(),  -->
 
-<body onload="exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="carregar()">
 
     <div class="janela">
 
@@ -95,23 +95,8 @@
                         </div>
                     </div>
                     <!-- Aqui são inseridos novos usuários no ranking: -->
-                    <div class="users">
-                        <div class="boxes">
-                            <div class="nomeuser">
-                                <span>UsuárioExemplo</span>
-                            </div>
-                            <div class="pontosuser">
-                                <div class="pontosq">
-                                    <span>10</span>
-                                </div>
-                                <div class="pontosc">
-                                    <span>11</span>
-                                </div>
-                                <div class="pontost">
-                                    <span>21</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="users" id="usersRanking">
+                        
                         
                     </div>
 
@@ -128,6 +113,53 @@
 
 
 <script>
+
+function carregar() {
+    fetch("/usuarios/pegarRanking", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    
+                }),
+            })
+                .then(function (resposta) {
+                    resposta.json().then(function (json) {
+                        console.log(json)
+                        
+                        for (var i = 0 ; i < json.length ; i++) {
+                            console.log(json[i])
+                            usersRanking.innerHTML += `
+                            <div class="boxes">
+                            <div class="nomeuser">
+                                <span>${json[i].nome}</span>
+                            </div>
+                            <div class="pontosuser">
+                                <div class="pontosq">
+                                    <span>${json[i].pontquiz}</span>
+                                </div>
+                                <div class="pontosc">
+                                    <span>${json[i].pontcruz}</span>
+                                </div>
+                                <div class="pontost">
+                                    <span>${json[i].pontquiz + json[i].pontcruz}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                            `
+                        }
+
+                    })
+                    console.log("resposta: ", resposta);
+
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                   
+                });
+}
 
 
 
