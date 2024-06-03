@@ -23,7 +23,7 @@
 </head>
 <!-- validarSessao(),  -->
 
-<body onload="carregar()">
+<body onload="carregar(), validarSessao()">
 
     <div class="janela">
 
@@ -166,5 +166,7 @@
 function irgraficos() {
     window.location.href="graficosrank.html"
 }
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 </script>

@@ -315,7 +315,7 @@ body::-webkit-scrollbar-thumb {
 .footer {
   background-color: rgb(131, 96, 0);
   height: 70px;
-  width: 100%;
+  width: 99.7vw;
   color: #000000;
   display: flex;
   font-size: 15px;
@@ -329,11 +329,11 @@ body::-webkit-scrollbar-thumb {
 
 .footer .container .recado {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   text-align: center;
 
-  width: 76%;
+  width: 100%;
   font-size: 17px;
 }
 

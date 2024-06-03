@@ -24,7 +24,7 @@
 </head>
 <!-- validarSessao(),  -->
 
-<body onload="carregar() ">
+<body onload="carregar(), validarSessao()">
 
     <div class="janela">
 
@@ -170,4 +170,6 @@
             },
         });
     }
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 </script>
