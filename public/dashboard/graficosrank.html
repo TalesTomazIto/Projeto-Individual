@@ -14,6 +14,7 @@
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,7 @@
 </head>
 <!-- validarSessao(),  -->
 
-<body onload="carregar()">
+<body onload="carregar() ">
 
     <div class="janela">
 
@@ -110,33 +111,17 @@
                 resposta.json().then(function (json) {
                     console.log(json)
 
-                    new Chart('#canva1', {
-                        type: "bar",
-                        data: {
-                            labels: json[0].nome,
-                            datasets: [
-                                {
-                                    label: "Pontos Quiz",
-                                    data: json[0].pontquiz,
-                                    borderWidth: 1,
-                                    borderColor: "#FF6384",
-                                    backgroundColor: "#FF6384",
-                                },
-                                {
-                                    label: "Pontos Cruzadinha",
-                                    data: json[0].pontcruz,
-                                    borderWidth: 1,
-                                    borderColor: "#36A2EB",
-                                    backgroundColor: "#36A2EB",
-                                },
-                            ],
-                        },
-                        options: {
-                            y: {
-                                max: 100,
-                            },
-                        },
-                    });
+                    var pontosquiz = [];
+                    var pontoscruz = [];
+                    var nomes = [];
+
+                    for (var i = 0; i < json.length; i++) {
+                        pontosquiz.push(json[i].pontquiz);
+                        pontoscruz.push(json[i].pontcruz);
+                        nomes.push(json[i].nome)
+                    }
+
+                    plotargrafico(pontosquiz, pontoscruz, nomes)
 
                 })
                 console.log("resposta: ", resposta);
@@ -148,4 +133,41 @@
             });
     }
 
+
+    function plotargrafico(pontosquiz, pontoscruz, nomes) {
+
+        new Chart(document.getElementById('canva1'), {
+            type: "bar",
+            data: {
+                labels: nomes,
+                datasets: [
+                    {
+                        label: "Pontos Quiz",
+                        data: pontosquiz,
+                        borderWidth: 1,
+                        borderColor: "rgb(253, 219, 126)",
+                        backgroundColor: "rgb(253, 219, 126)",
+                        color: "rgb(255, 255, 255)",
+                    },
+                    {
+                        label: "Pontos Cruzadinha",
+                        data: pontoscruz,
+                        borderWidth: 1,
+                        borderColor: "rgb(253, 219, 126)",
+                        backgroundColor: "rgb(253, 219, 126)",
+                        color: "rgb(255, 255, 255)",
+                    },
+                ],
+            },
+            options: {
+                legend: {
+                    display: true,
+                        color: "rgb(255, 255, 255)"
+                },
+                            y: {
+                    max: 60,
+                },
+            },
+        });
+    }
 </script>

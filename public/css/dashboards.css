@@ -954,3 +954,10 @@ footer p {
 .pontost {
   width: 10%;
 }
+
+.grafico {
+  height: 60%;
+  width: 80%;
+  margin-top: 5%;
+  color: white;
+}
