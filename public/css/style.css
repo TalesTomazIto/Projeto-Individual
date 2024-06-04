@@ -10,6 +10,7 @@ body {
   --sb-track-color: #2b2b2b;
   --sb-thumb-color: #fddb7e;
   --sb-size: 6px;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -313,7 +314,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .footer {
-  background-color: rgb(131, 96, 0);
+  background-color: #836000;
   height: 70px;
   width: 99.7vw;
   color: #000000;
@@ -444,12 +445,12 @@ body::-webkit-scrollbar-thumb {
 
 .card_erro {
   display: none;
-  background-color: #fff;
+  background-color: #836000;
   color: black;
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #e6005a 3px solid;
+  border: #000000 5px solid;
   padding: 10px;
   margin-right: 10%;
 }
